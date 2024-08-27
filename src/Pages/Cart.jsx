@@ -21,6 +21,7 @@ function Cart() {
       //Increment
   let handleIncrement = () =>{
     if(quantity<10){
+      console.log("ïn incremenet")
       setQuantity(prevCount => prevCount+1)
     }
         }
@@ -28,6 +29,7 @@ function Cart() {
   //Decrement
   let handleDecrement = () =>{
     if(quantity>1){
+      console.log("ïn decremebt")
       setQuantity(prevCount => prevCount-1)
     }
        }

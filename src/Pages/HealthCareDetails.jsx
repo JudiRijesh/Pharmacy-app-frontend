@@ -10,6 +10,8 @@ function HealthCareDetails() {
     const {deviceId}=useParams()
     const [quantity,setQuantity] = useState(1)
 
+    const navigate = useNavigate()
+
     console.log(`${import.meta.env.VITE_BACKEND_URL}/HealthCare/${deviceId}`)
 
     useEffect(()=>{
@@ -36,6 +38,28 @@ function HealthCareDetails() {
     }
        }
 
+  //Add to Cart
+  
+  let submitAddtocart = (e)=>{
+    e.preventDefault()
+
+    let data = {
+      id: device.id,
+      name: device.name,
+      price: device.price,
+      size: device.size,
+      quantity: quantity
+    }
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/AddtoCart`,data)
+    .then(()=>{
+      alert("Item added to Cart")
+      navigate('/Cart')
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
     <div className="device-container">
         {device && (
@@ -55,7 +79,7 @@ function HealthCareDetails() {
 
                 </div>
 
-                <div class="product-container">
+                <div className="product-container">
   <h6>Price</h6>
   <hr className='medicine-container hr'/>
   <p>€{device.price}</p>
@@ -66,7 +90,7 @@ function HealthCareDetails() {
       <button type='button' onClick={handleIncrement} className='input-group-text'>+</button>
       </div>
       <div className='space'>
-      <button type="button" className="btn btn-info button-space">Add to Cart</button>
+      <button type="button" className="btn btn-info button-space" onClick={submitAddtocart}>Add to Cart</button>
       </div>
       <p className='return-notice'>**Please read the return policy for HealthCare device details</p>
       </div>

@@ -12,6 +12,7 @@ import logo from './assets/logo.png'
 import Navbar from './Components/Navbar'
 import Cart from './Pages/Cart'
 import Appointments from './Pages/Appointments'
+import Edit from './Pages/Edit'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/labtest' element={<LabTest/>}/>
         <Route path='/appointments' element={<Appointments/>}/>
         <Route path='/Cart' element={<Cart/>}/>
+        <Route path='/edit/:id' element={<Edit/>}/>
      
       </Routes>
     </div>

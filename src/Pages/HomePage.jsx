@@ -11,7 +11,7 @@ function HomePage() {
   const [searchTerm, setSearchTerm]=useState('')
 
   useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_BACKEND_URL}/search?q=${searchTerm}`)
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/medicines?name=${searchTerm}`)
     .then((response)=>{
       setItems(response.data)
     })
@@ -23,6 +23,7 @@ function HomePage() {
   return(
 
     <div className="homepage-container">
+    
     <img src={pills} alt="pills" className="image1" />
     
     <div className="search-container">

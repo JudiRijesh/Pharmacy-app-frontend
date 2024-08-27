@@ -1,79 +1,103 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import ExpressLab from '../assets/ExpressLab.png'
 import info from '../assets/info.png'
+import { useNavigate } from 'react-router-dom'
 
-function LabTest() {
-  const [patientName, setPatientName] = useState("")
-  const [phoneNumber, SetPhoneNumber] = useState("")
-  const [emailId, setEmailId] = useState("")
-  const [location,setLocation] = useState("")
-  const [dateOfBirth, setDateOfBirth] = useState("")
-  const [gender,setGender] = useState("")
-  const [priority, setPriority] = useState("")
-  const [referringDoctor , setReferringDoctor] = useState("")
-  const [test, setTest] = useState("")
-  const [slot, setSlot] = useState("")
+function Edit() {
 
+    const {id} = useParams()
+    const [patientName, setPatientName] = useState(null)
+    const [phoneNumber, setPhoneNumber] = useState(null) 
+    const [emailId, setEmailId] =useState(null)
+    const [location,setLocation] = useState(null)
+    const [dateOfBirth, setDateOfBirth ] = useState(null)
+    const [gender,setGender] = useState(null)
+    const [priority, setPriority] = useState(null)
+    const [referringDoctor , setReferringDoctor] = useState(null)
+    const [test, setTest] = useState(null)
+    const [timeslot, setTimeSlot] = useState(null)
+       
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/labtests/${id}`)
+        .then((response)=>{
+            setPatientName(response.data.patientName)
+            setPhoneNumber(response.data.phoneNumber)
+            setEmailId(response.data.emailId)
+            setLocation(response.data.location)
+            setDateOfBirth(response.data.dateOfBirth)
+            setGender(response.data.gender)
+            setPriority(response.data.priority)
+            setReferringDoctor(response.data.referringDoctor)
+            setTest(response.data.test)
+            setTimeSlot(response.data.timeslot)
+          })
+        .catch((err)=>{
+            console.log((err))})
+    },[])
+
+    function handleUpdate(e){
+        e.preventDefault()
   
-  const navigate = useNavigate()
-
-  function handleSubmit(e){
-      e.preventDefault()
-
-
-  let newLabTest = {patientName: patientName, phoneNumber: phoneNumber, emailId: emailId, location: location, dateOfBirth: dateOfBirth, gender:gender, priority:priority, referringDoctor:referringDoctor, test:test, slot:slot}
-  axios.post(`${import.meta.env.VITE_BACKEND_URL}/labtests`, newLabTest)
-  .then(()=>{
-    alert("Your appointment for Labtest has been created")
-    navigate('/appointments') })
-    .catch((err)=>{
-      console.log(err)
-    })
-  }
+  
+    let newLabTest = {patientName: patientName, phoneNumber: phoneNumber, emailId: emailId, location: location, dateOfBirth: dateOfBirth, gender:gender, priority:priority, referringDoctor:referringDoctor, test:test, slot:timeslot}
+    axios.put(`${import.meta.env.VITE_BACKEND_URL}/labtests/${id}`, newLabTest)
+    .then(()=>{
+      alert("Your appointment for Labtest has been Changed")
+      navigate('/appointments') })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
+  
 
   return (
     <div>
     <img src={info} alt="info" className='info' />
     <img src={ExpressLab} alt="ExpressLab" className="express-image" />
     <div className='lab-test-container'>
-    <form onSubmit={handleSubmit} className='lasb-test-form'>
-      <div className='form-group'>
-        <label>
+    <form onSubmit={handleUpdate} className='lasb-test-form'>
+
+       <div className='form-group'>
+       <label>
           Patient Name:
-          <input type="text" onChange={(e)=>{setPatientName(e.target.value)}}/>
-        </label> 
+          <input value = {patientName} type="text" onChange={(e)=>{setPatientName(e.target.value)}}/>
+          </label> 
         </div>
+       
 
         <div className='form-group'>
         <label>
           Contact Number:
-          <input type="tel" placeholder="+61 (0) 555-555555" onChange={(e)=>{SetPhoneNumber(e.target.value)}}/>
+          <input value = {phoneNumber} type="tel" placeholder="+61 (0) 555-555555" onChange={(e)=>{setPhoneNumber(e.target.value)}}/>
         </label> 
         </div>
 
         <div className='form-group'>
         <label>
           Email Id:
-          <input type="text" onChange={(e)=>{setEmailId(e.target.value)}}/>
+          <input value={emailId} type="text" onChange={(e)=>{setEmailId(e.target.value)}}/>
           <div className='email-notice'>
-          **Once the results are available a soft-copy will be sent to the email-id
           </div>
         </label> 
         </div>
 
-        <div className='form-group'>
-        <label>
-          Location:
-          <input type="text" onChange={(e)=>{setLocation(e.target.value)}}/>
-        </label>
-        </div>
 
         <div className='form-group'>
         <label>
+          Location:
+          <input value={location} type="text" onChange={(e)=>{setLocation(e.target.value)}}/>
+        </label>
+        </div>
+
+
+       <div className='form-group'>
+        <label>
           D.O.B:
-          <input type="date" onChange={(e)=>{setDateOfBirth(e.target.value)}}/>
+          <input value={dateOfBirth} type="date" onChange={(e)=>{setDateOfBirth(e.target.value)}}/>
         </label>
         </div>
 
@@ -93,7 +117,7 @@ function LabTest() {
         <label>
         Priority:
           <select onChange={(e) => setPriority(e.target.value)} className="form-control">
-          <option value="">Priority</option>
+          <option value="">Priority</option> {/* Placeholder option */}
           <option value="Immediate">Immediate</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
@@ -104,11 +128,11 @@ function LabTest() {
         <div className='form-group'>
         <label>
           Referring Doctor:
-          <input type="text" onChange={(e)=>{setReferringDoctor(e.target.value)}}/>
+          <input value={referringDoctor} type="text" onChange={(e)=>{setReferringDoctor(e.target.value)}}/>
         </label>
         </div>
 
-        <div className='form-group'>
+       <div className='form-group'>
         <label>
           Lab-Test Name:
           <select onChange={(e) => setTest(e.target.value)} className="form-control">
@@ -408,14 +432,17 @@ function LabTest() {
         </select>
         </label>
         </div>
-        
-        <button type='submit' className='submit-button'>Submit</button>
-        
 
-      </form>
+        <button type='submit' className='submit-button'>Update</button>
+
+
+   
+    </form>
     </div>
     </div>
-  )
-}
 
-export default LabTest
+
+    )
+  }
+
+export default Edit

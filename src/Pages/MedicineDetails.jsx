@@ -9,6 +9,7 @@ function Medicineinfo() {
   const {medicineId}=useParams()
   const [quantity,setQuantity] = useState(1)
 
+
   const navigate = useNavigate()
 
   console.log(`${import.meta.env.VITE_BACKEND_URL}/medicines/${medicineId}`)
@@ -53,9 +54,11 @@ function Medicineinfo() {
       alert("Item added to Cart")
       navigate('/Cart')})
     .catch((error) => {
-      console.error('Error adding item to cart:', error);
+      console.error(error);
     })
     }
+
+
 
     return (
     <div className="medicine-container">

@@ -7,6 +7,7 @@ function Appointments() {
 
     const [appointments,setAppointments] =useState([])
 
+
      
     useEffect(()=>{
       axios.get(`${import.meta.env.VITE_BACKEND_URL}/labtests`)
@@ -28,7 +29,6 @@ function Appointments() {
             console.error("Error deleting appointment:", err);
           });
       };
-
 
   return (
     <div>
@@ -55,7 +55,7 @@ function Appointments() {
                 <p>{oneAppointment.test}</p>
                 <p>{oneAppointment.slot}</p>
                 <button onClick={()=> handleDelete(oneAppointment.id)} className="del-edit">Delete</button>
-                <button className="del-edit">Edit</button>
+                <Link className="del-edit" to= {`/edit/${oneAppointment.id}`}>Edit</Link>
             </div>
     ))}
   </div>
