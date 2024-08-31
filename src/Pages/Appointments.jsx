@@ -37,7 +37,6 @@ function Appointments() {
         <div className="titles-row">
             <h6>Patient Name</h6>
             <h6>Contact Number</h6>
-            <h6 className='emailId'>Email Id</h6>
             <h6>D.O.B</h6>
             <h6>Priority</h6>
             <h6>Test</h6>
@@ -49,7 +48,6 @@ function Appointments() {
             <div key={oneAppointment.id} className="appointment-item">
                 <p>{oneAppointment.patientName}</p>
                 <p>{oneAppointment.phoneNumber}</p>
-                <p>{oneAppointment.emailId}</p>
                 <p>{oneAppointment.dateOfBirth}</p>
                 <p>{oneAppointment.priority}</p>
                 <p>{oneAppointment.test}</p>

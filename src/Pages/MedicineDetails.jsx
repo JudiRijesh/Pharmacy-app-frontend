@@ -39,26 +39,25 @@ function Medicineinfo() {
        }
 
   //Add to Cart
-  let submitAddtocart =(e) =>{
+  let submitAddtocart = (e) =>{
     e.preventDefault()
 
-    let data = {
-      id: medicine.id,
+     let data = {
       name: medicine.name,
       price: medicine.price,
       size: medicine.size,
-      quantity: quantity,
+      quantity: quantity
     }
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/AddtoCart`,data)
-    .then(()=>{
-      alert("Item added to Cart")
-      navigate('/Cart')})
-    .catch((error) => {
-      console.error(error);
+      axios.post(`${import.meta.env.VITE_BACKEND_URL}/AddtoCart`,data)
+      .then(()=>{
+       alert("Item added to Cart")
+      navigate('/Cart')
     })
-    }
-
-
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+    
 
     return (
     <div className="medicine-container">
@@ -99,6 +98,5 @@ function Medicineinfo() {
     )}
   </div>
     )}
-
-
+  
 export default Medicineinfo

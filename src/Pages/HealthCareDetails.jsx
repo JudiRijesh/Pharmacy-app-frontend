@@ -44,7 +44,6 @@ function HealthCareDetails() {
     e.preventDefault()
 
     let data = {
-      id: device.id,
       name: device.name,
       price: device.price,
       size: device.size,

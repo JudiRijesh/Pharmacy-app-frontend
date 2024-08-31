@@ -13,6 +13,12 @@ import Navbar from './Components/Navbar'
 import Cart from './Pages/Cart'
 import Appointments from './Pages/Appointments'
 import Edit from './Pages/Edit'
+import SearchPage from './Pages/SearchPage'
+import ServicesForm from './Pages/ServicesForm'
+import AboutUs from './Pages/AboutUs'
+import Services from './Pages/Services'
+import BookLabTests from './Pages/BookLabTests'
+import Categories from './Pages/Categories'
 
 
 function App() {
@@ -30,6 +36,12 @@ function App() {
         <Route path='/appointments' element={<Appointments/>}/>
         <Route path='/Cart' element={<Cart/>}/>
         <Route path='/edit/:id' element={<Edit/>}/>
+        <Route path='/search' element={<SearchPage/>}/>
+        <Route path='/servicesform' element={<ServicesForm/>}/>
+        <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/services' element={<Services/>}/>
+        <Route path='book-lab-tests' element={<BookLabTests/>}/>
+        <Route path='categories' element={<Categories/>}/>
      
       </Routes>
     </div>

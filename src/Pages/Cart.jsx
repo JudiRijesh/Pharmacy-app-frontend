@@ -18,21 +18,6 @@ function Cart() {
         })
       },[])
 
-      //Increment
-  let handleIncrement = () =>{
-    if(quantity<10){
-      console.log("ïn incremenet")
-      setQuantity(prevCount => prevCount+1)
-    }
-        }
-
-  //Decrement
-  let handleDecrement = () =>{
-    if(quantity>1){
-      console.log("ïn decremebt")
-      setQuantity(prevCount => prevCount-1)
-    }
-       }
 
       let handleDelete = (itemId) => {
         axios.delete(`${import.meta.env.VITE_BACKEND_URL}/AddtoCart/${itemId}`)
@@ -69,11 +54,11 @@ function Cart() {
         <td>{oneCartItem.price}</td>
 
         <div className='input-group qty-space '>
-      <button type='button' onClick={handleDecrement} className="input-group-text">-</button>
+     
       <div className='cart-control'>{oneCartItem.quantity}</div>
-      <button type='button' onClick={handleIncrement} className='input-group-text'>+</button>
+     
       </div>    
-        <td>{(oneCartItem.price)*(oneCartItem.quantity)}</td>
+        <td>{(oneCartItem.price*oneCartItem.quantity).toFixed(2)}</td>
         <td><button onClick={()=> handleDelete(oneCartItem.id)}>Delete</button></td>
         </tr>
     ))}

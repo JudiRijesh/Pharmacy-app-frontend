@@ -10,12 +10,9 @@ function Edit() {
     const {id} = useParams()
     const [patientName, setPatientName] = useState(null)
     const [phoneNumber, setPhoneNumber] = useState(null) 
-    const [emailId, setEmailId] =useState(null)
     const [location,setLocation] = useState(null)
     const [dateOfBirth, setDateOfBirth ] = useState(null)
-    const [gender,setGender] = useState(null)
     const [priority, setPriority] = useState(null)
-    const [referringDoctor , setReferringDoctor] = useState(null)
     const [test, setTest] = useState(null)
     const [timeslot, setTimeSlot] = useState(null)
        
@@ -26,12 +23,9 @@ function Edit() {
         .then((response)=>{
             setPatientName(response.data.patientName)
             setPhoneNumber(response.data.phoneNumber)
-            setEmailId(response.data.emailId)
             setLocation(response.data.location)
             setDateOfBirth(response.data.dateOfBirth)
-            setGender(response.data.gender)
             setPriority(response.data.priority)
-            setReferringDoctor(response.data.referringDoctor)
             setTest(response.data.test)
             setTimeSlot(response.data.timeslot)
           })
@@ -43,7 +37,7 @@ function Edit() {
         e.preventDefault()
   
   
-    let newLabTest = {patientName: patientName, phoneNumber: phoneNumber, emailId: emailId, location: location, dateOfBirth: dateOfBirth, gender:gender, priority:priority, referringDoctor:referringDoctor, test:test, slot:timeslot}
+    let newLabTest = {patientName: patientName, phoneNumber: phoneNumber, location: location, dateOfBirth: dateOfBirth, priority:priority, test:test, slot:timeslot}
     axios.put(`${import.meta.env.VITE_BACKEND_URL}/labtests/${id}`, newLabTest)
     .then(()=>{
       alert("Your appointment for Labtest has been Changed")
@@ -76,16 +70,7 @@ function Edit() {
         </label> 
         </div>
 
-        <div className='form-group'>
-        <label>
-          Email Id:
-          <input value={emailId} type="text" onChange={(e)=>{setEmailId(e.target.value)}}/>
-          <div className='email-notice'>
-          </div>
-        </label> 
-        </div>
-
-
+        
         <div className='form-group'>
         <label>
           Location:
@@ -101,23 +86,11 @@ function Edit() {
         </label>
         </div>
 
-        <div className='form-group'>
-        <label>
-          Gender:
-          <select onChange={(e) => setGender(e.target.value)} className="form-control">
-          <option value="">Select Gender</option> 
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Prefer not to disclose">Prefer not to disclose</option>
-         </select>
-        </label>
-        </div>
-
-        <div className='form-group'>
+       <div className='form-group'>
         <label>
         Priority:
           <select onChange={(e) => setPriority(e.target.value)} className="form-control">
-          <option value="">Priority</option> {/* Placeholder option */}
+          <option value={priority}>Priority</option> {/* Placeholder option */}
           <option value="Immediate">Immediate</option>
           <option value="Medium">Medium</option>
           <option value="Low">Low</option>
@@ -125,18 +98,12 @@ function Edit() {
         </label>
         </div>
 
-        <div className='form-group'>
-        <label>
-          Referring Doctor:
-          <input value={referringDoctor} type="text" onChange={(e)=>{setReferringDoctor(e.target.value)}}/>
-        </label>
-        </div>
-
+        
        <div className='form-group'>
         <label>
           Lab-Test Name:
           <select onChange={(e) => setTest(e.target.value)} className="form-control">
-            <option value="">Select Lab Test</option>
+            <option value={test}>Select Lab Test</option>
             <option value="CBC Test">CBC Test</option>
             <option value="CRP Test">CRP Test</option>
             <option value="RT PCR Test">RT PCR Test</option>
@@ -370,8 +337,8 @@ function Edit() {
         <div className='form-group'>
         <label>
           Choose a Time Slot:
-          <select onChange={(e) => setSlot(e.target.value)} className="form-control">
-          <option value="">Choose a slot for appointment</option>
+          <select onChange={(e) => setTimeSlot(e.target.value)} className="form-control">
+          <option value={timeslot}>Choose a slot for appointment</option>
           <option value="06:00 - 06:15">06:00 - 06:15</option>
           <option value="06:15 - 06:30">06:15 - 06:30</option>
           <option value="06:30 - 06:45">06:30 - 06:45</option>
