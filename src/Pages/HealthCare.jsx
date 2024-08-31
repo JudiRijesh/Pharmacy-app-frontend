@@ -25,14 +25,18 @@ function HealthCare() {
           <div className="medicines-container">
           
       <div className="medicines-grid">
-  {devices.map((oneDevice, index) => (
-    <div key={index} className="device-card">
+
+      {devices.map((oneDevice, index)=>{
+        return(
+          <div key={index} className="device-card">
     <Link to={`/healthcareDetails/${oneDevice.id}`}><button className='medicine-button'>
       <img src={oneDevice.picture} alt={oneDevice.name} className='imageH' />
       <h6 className='textH'>{oneDevice.name}</h6>
       </button></Link>
     </div>
-  ))}
+        )
+      })}
+ 
     </div>
  </div>
     </div>
