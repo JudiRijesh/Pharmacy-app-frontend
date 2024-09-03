@@ -5,6 +5,7 @@ import HealthCareDetails from './HealthCareDetails'
 
 function HealthCare() {
   const [devices, setDevices]=useState([])
+  const [loading, setLoading] = useState(true)
 
   console.log(`${import.meta.env.VITE_BACKEND_URL}`)
 
@@ -13,10 +14,12 @@ function HealthCare() {
     .then((allDevices)=>{
       setDevices(allDevices.data)
       console.log(allDevices.data)
+      setLoading(false)
     })
     .catch((err)=>{
-      console.log((err))    
-    })
+      console.log((err)) 
+      setLoading(false)
+        })
   },[])
 
   return (

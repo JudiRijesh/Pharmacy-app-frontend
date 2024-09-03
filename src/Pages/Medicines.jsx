@@ -2,11 +2,12 @@ import React from 'react'
 import axios from "axios"
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import MedicineDetails from '../Pages/MedicineDetails'
+
 
 function Medicines() {
 
   const [medicines,setMedicines] =useState([])
+  const [loading, setLoading] = useState(true)
 
   console.log(`${import.meta.env.VITE_BACKEND_URL}`)
 
@@ -15,9 +16,12 @@ function Medicines() {
     .then((allMedicines)=>{
       setMedicines(allMedicines.data)
       console.log(allMedicines.data)
+      setLoading(false)
     })
     .catch((err)=>{
-      console.log((err))})
+      console.log((err))
+      setLoading(false)
+    })
   },[])
     
   return (
