@@ -9,6 +9,7 @@ function HealthCareDetails() {
     const[device,setDevice]=useState(null)
     const {deviceId}=useParams()
     const [quantity,setQuantity] = useState(1)
+    const [loading, setLoading] = useState(true)
 
     const navigate = useNavigate()
 
@@ -18,9 +19,11 @@ function HealthCareDetails() {
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/HealthCare/${deviceId}`)
         .then((oneDevice)=>{
             setDevice(oneDevice.data)
+            setLoading(false)
         })
         .catch((err)=>{
             console.log(err)
+            setLoading(false)
         })
     },[deviceId])
 
@@ -56,6 +59,7 @@ function HealthCareDetails() {
     })
     .catch((error)=>{
       console.log(error)
+      setLoading(false)
     })
   }
 
