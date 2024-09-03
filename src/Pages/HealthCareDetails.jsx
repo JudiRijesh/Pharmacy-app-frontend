@@ -59,9 +59,16 @@ function HealthCareDetails() {
     })
     .catch((error)=>{
       console.log(error)
-      setLoading(false)
+      
     })
   }
+  if (loading) {
+    return <div>Loading...</div>;
+}
+
+if (!device) {
+    return <div>Error: Device not found.</div>;
+}
 
   return (
     <div className="device-container">

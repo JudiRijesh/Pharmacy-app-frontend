@@ -8,6 +8,7 @@ function Medicineinfo() {
   const [medicine,setMedicine] = useState(null)
   const {medicineId}=useParams()
   const [quantity,setQuantity] = useState(1)
+  const [loading, setLoading] = useState(true)
 
 
   const navigate = useNavigate()
@@ -18,9 +19,11 @@ function Medicineinfo() {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/medicines/${medicineId}`)
     .then((oneMedicine)=>{
       setMedicine(oneMedicine.data)
+      setLoading(false)
     })
     .catch((err)=>{
       console.log(err)
+      setLoading(false)
     })
   },[medicineId])
 
@@ -57,7 +60,14 @@ function Medicineinfo() {
       console.log(error)
     })
   }
-    
+
+    if (loading) {
+    return <div>Loading...</div>;
+  }
+
+    if (!medicine) {
+    return <div>Error: Medicine not found.</div>;
+  }
 
     return (
     <div className="medicine-container">
