@@ -16,9 +16,9 @@ import Edit from './Pages/Edit'
 import SearchPage from './Pages/SearchPage'
 import ServicesForm from './Pages/ServicesForm'
 import AboutUs from './Pages/AboutUs'
-import Services from './Pages/Services'
+import FAQ from './Pages/FAQ'
 import BookLabTests from './Pages/BookLabTests'
-import Categories from './Pages/Categories'
+
 
 
 function App() {
@@ -39,9 +39,9 @@ function App() {
         <Route path='/search' element={<SearchPage/>}/>
         <Route path='/servicesform' element={<ServicesForm/>}/>
         <Route path='/about' element={<AboutUs/>}/>
-        <Route path='/services' element={<Services/>}/>
-        <Route path='book-lab-tests' element={<BookLabTests/>}/>
-        <Route path='categories' element={<Categories/>}/>
+        <Route path='/FAQ' element={<FAQ/>}/>
+        <Route path='/book-lab-tests' element={<BookLabTests/>}/>
+   
      
       </Routes>
     </div>

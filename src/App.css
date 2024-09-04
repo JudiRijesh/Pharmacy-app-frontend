@@ -811,3 +811,66 @@ color: rgb(121, 118, 118);
   height: auto;
   border-radius: 8px;
 }
+
+.faq-image {
+  max-width: 40%;
+  height: auto;
+  border-radius: 8px;
+  padding-right: 50px;
+  padding-top: 90px;
+  float: left;
+  
+}
+
+.faq {
+  padding-top: 90px;
+  color:rgb(121, 118, 118);  ;
+}
+
+/*LabTest*/
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 10px; 
+
+}
+
+.item-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  height: 100px;
+  width: 100%;  
+  max-width: 200px;
+}
+
+.item-image {
+  width: 60px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.item-text {
+  flex: 1;
+  font-size: 12px;
+  padding-left: 5px;
+  padding-top: 35px;
+}
+
+.doctor {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color:rgb(121, 118, 118);
+}
+.Color{
+  color:rgb(121, 118, 118);
+}
+
+.doctorl {
+  margin-top: 50px;
+  color:rgb(121, 118, 118);
+}
