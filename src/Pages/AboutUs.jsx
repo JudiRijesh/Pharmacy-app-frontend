@@ -48,9 +48,8 @@ function AboutUs() {
             <h5>About MAD Pharmacy</h5>
             <ul>
               <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/FAQ">Frequently Asked Questions</Link></li>
               <li><Link to="/book-lab-tests">Book Lab Tests at Home</Link></li>
-              <li><Link to="/categories">Product Categories</Link></li>
             </ul>
           </div>
           <div className="footer-right">
