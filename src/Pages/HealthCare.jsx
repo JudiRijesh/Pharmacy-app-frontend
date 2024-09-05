@@ -26,7 +26,7 @@ function HealthCare() {
     <div>
           <p className='healthcare'>The World Health Organization in 1948 broadly defined wellness as "not merely the absence of disease and infirmity" but an overall sense of well-being.</p>
           <div className="medicines-container">
-          
+          {loading ? (<p>Loading...</p>) : (
       <div className="medicines-grid">
 
       {devices.map((oneDevice, index)=>{
@@ -41,7 +41,9 @@ function HealthCare() {
       })}
  
     </div>
+  )}
  </div>
+       
     </div>
   )
 }
